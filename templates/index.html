@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Recommender</title>
+</head>
+<body>
+    <h1>Career Recommender</h1>
+    <form method="post">
+        <h2>Select Your Interests:</h2>
+        {% for col in interest_columns %}
+            <label>
+                <input type="checkbox" name="{{ col }}" value="1"> {{ col.replace('_', ' ') }}
+            </label><br>
+        {% endfor %}
+        <h2>Select Your Course:</h2>
+        <select name="course">
+            {% for course in course_options %}
+                <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Get Recommendations">
+    </form>
+    {% if recommendations %}
+        <h2>Recommended Careers:</h2>
+        <ul>
+        {% for career in recommendations %}
+            <li>{{ career }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
